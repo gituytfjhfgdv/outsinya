@@ -1,0 +1,5 @@
+%header
+  - if signed_in?
+    = link_to 'ログアウト', logout_path
+  - else
+    = link_to 'ログイン', '/auth/twitter'
