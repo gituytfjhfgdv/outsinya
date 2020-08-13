@@ -4,8 +4,8 @@
 #
 #  id         :uuid             not null, primary key
 #  icon_image :string
-#  nickname   :string
-#  uid        :string
+#  nickname   :string           not null
+#  uid        :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
