@@ -3,4 +3,8 @@ Rails.application.routes.draw do
   root to: 'homes#index'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
+
+  namespace :users do
+    resources :positive_words, :negative_words
+  end
 end

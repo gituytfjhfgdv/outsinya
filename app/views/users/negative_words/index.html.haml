@@ -1,0 +1,5 @@
+- @negative_words.each do |word|
+  = word.content
+  = link_to '削除する', users_negative_word_path(id: word.id), method: :delete
+  %br
+= link_to '追加する', new_users_negative_word_path
