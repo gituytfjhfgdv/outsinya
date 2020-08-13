@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_150554) do
+ActiveRecord::Schema.define(version: 2020_08_13_140910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "positive_words", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "content", null: false
+    t.uuid "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_positive_words_on_user_id"
+  end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "nickname"
@@ -24,4 +32,5 @@ ActiveRecord::Schema.define(version: 2020_08_11_150554) do
     t.string "uid"
   end
 
+  add_foreign_key "positive_words", "users"
 end
