@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   namespace :users do
+    root to: 'homes#index'
     resources :positive_words, :negative_words
   end
 end

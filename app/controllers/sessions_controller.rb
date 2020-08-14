@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(uid: user_data[:uid])
     if user
       flash[:success] = "#{user.nickname}様ようこそ！"
-      log_in(user) && redirect_to(root_url)
+      log_in(user) && redirect_to(users_root_path)
       return
     end
 
@@ -20,10 +20,11 @@ class SessionsController < ApplicationController
     if new_user.save
       log_in new_user
       flash[:success] = 'ユーザ登録しました'
+      redirect_to users_root_path
     else
       flash[:alert] = 'ユーザ登録に失敗しました'
+      redirect_to root_url
     end
-    redirect_to root_url
   end
 
   def destroy
