@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      user:
+        'ユーザー'
+      negative_word:
+        '嫌な言葉'
+      positive_word:
+        '好きな言葉'
+    attributes: &attributes
+      user:
+        nickname: ユーザ名
+      positive_word:
+        content: その言葉
+      negative_word:
+        content: その言葉
