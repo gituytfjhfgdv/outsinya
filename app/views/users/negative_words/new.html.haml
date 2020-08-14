@@ -1,3 +1,5 @@
-= form_with model: [:users, @negative_word], method: :post, local: true  do |form|
+= render 'layouts/error_message', model: @negative_word
+= form_with model: [:users, @negative_word], method: :post,
+  local: true do |form|
   = form.text_field :content
   = form.submit

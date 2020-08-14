@@ -18,4 +18,5 @@
 #
 class PositiveWord < ApplicationRecord
   belongs_to :user
+  validates :content, uniqueness: { scope: :user_id }
 end
