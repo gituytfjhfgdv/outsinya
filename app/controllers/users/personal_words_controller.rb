@@ -1,6 +1,6 @@
-class Users::NegativeWordsController < UsersController
+class Users::PersonalWordsController < UsersController
   def new
-    @negative_word = NegativeWord.new
+    @negative_word = PersonalWord.new
   end
 
   def create

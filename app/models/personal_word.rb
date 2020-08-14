@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: negative_words
+# Table name: personal_words
 #
 #  id         :uuid             not null, primary key
 #  content    :string           not null
@@ -10,13 +10,13 @@
 #
 # Indexes
 #
-#  index_negative_words_on_user_id  (user_id)
+#  index_personal_words_on_user_id  (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class NegativeWord < ApplicationRecord
+class PersonalWord < ApplicationRecord
   belongs_to :user
   validates :content, uniqueness: { scope: :user_id }
 end

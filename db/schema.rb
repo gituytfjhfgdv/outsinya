@@ -10,26 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_145929) do
+ActiveRecord::Schema.define(version: 2020_08_14_161116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "negative_words", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "personal_words", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "content", null: false
     t.uuid "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_negative_words_on_user_id"
-  end
-
-  create_table "positive_words", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "content", null: false
-    t.uuid "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_positive_words_on_user_id"
+    t.index ["user_id"], name: "index_personal_words_on_user_id"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -40,6 +32,5 @@ ActiveRecord::Schema.define(version: 2020_08_13_145929) do
     t.string "uid", null: false
   end
 
-  add_foreign_key "negative_words", "users"
-  add_foreign_key "positive_words", "users"
+  add_foreign_key "personal_words", "users"
 end

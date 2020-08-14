@@ -1,0 +1,2 @@
+class Positive < PersonalWord
+end

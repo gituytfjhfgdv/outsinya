@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: positive_words
+# Table name: personal_words
 #
 #  id         :uuid             not null, primary key
 #  content    :string           not null
@@ -10,13 +10,16 @@
 #
 # Indexes
 #
-#  index_positive_words_on_user_id  (user_id)
+#  index_personal_words_on_user_id  (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class PositiveWord < ApplicationRecord
-  belongs_to :user
-  validates :content, uniqueness: { scope: :user_id }
+require 'test_helper'
+
+class PersonalWordTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end
