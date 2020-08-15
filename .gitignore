@@ -38,3 +38,7 @@ yarn-debug.log*
 /config/credentials/development.key
 
 /config/credentials/production.key
+
+# Ignore gem files
+/vendor/bundle
+/vendor/cache
