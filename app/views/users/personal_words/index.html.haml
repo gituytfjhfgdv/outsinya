@@ -1,0 +1,14 @@
+personal_words
+
+positive list
+%br
+- @words&.where(type: 'PositiveWord')&.each do |word|
+  = word.content
+  %br
+
+
+negative list
+%br
+- @words&.where(type: 'NegativeWord')&.each do |word|
+  = word.content
+  %br

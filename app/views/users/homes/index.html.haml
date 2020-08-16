@@ -1,6 +1,8 @@
 マイページ
 = @current_user.nickname
 
+= link_to '登録した言葉一覧へ', users_personal_words_path
+
 = link_to '嬉しい言葉一覧', users_positive_words_path
 %br
 = link_to '嫌な言葉一覧', users_negative_words_path

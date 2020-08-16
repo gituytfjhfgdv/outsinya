@@ -1,31 +1,43 @@
 class Users::PersonalWordsController < UsersController
+  before_action :set_word_type
+
   def new
-    @negative_word = PersonalWord.new
+    model_name = @word_type.split("_").map{|w| w[0] = w[0].upcase; w}.join
+    personal_word = model_name.constantize
+    @personal_word = personal_word.new
   end
 
   def create
-    @negative_word = NegativeWord.new(negative_word_params)
-    @negative_word.user = @current_user
-    if @negative_word.save
-      redirect_to users_negative_words_path
+    model_name = @word_type.split("_").map{|w| w[0] = w[0].upcase; w}.join
+    personal_word = model_name.constantize
+    @personal_word = personal_word.new(personal_word_params)
+    @personal_word.user = @current_user
+    if @personal_word.save
+      redirect_to users_personal_words_path
     else
       render :new
     end
   end
 
   def index
-    @negative_words = current_user.negative_words
+    p @word_type
+    p current_user.send("#{@word_type}s".to_sym)
+    @words = current_user.send("#{@word_type}s".to_sym)
   end
 
   def destroy
-    negative_word = NegativeWord.find_by(id: params[:id])
-    negative_word.destroy!
-    redirect_to users_negative_words_path
+    personal_word = PersonalWord.find_by(id: params[:id])
+    personal_word.destroy!
+    redirect_to users_personal_words_path
   end
 
   private
 
-  def negative_word_params
-    params.require(:negative_word).permit(:content)
+  def personal_word_params
+    params.require(@word_type).permit(:content)
+  end
+
+  def set_word_type
+    @word_type = 'personal_word'
   end
 end

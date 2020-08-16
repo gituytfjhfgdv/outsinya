@@ -1,2 +1,0 @@
-class Negative < PersonalWord
-end

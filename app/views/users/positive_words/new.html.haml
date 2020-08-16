@@ -1,5 +1,5 @@
-= render 'layouts/error_message', model: @positive_word
-= form_with model: [:users, @positive_word], method: :post,
+= render 'layouts/error_message', model: @personal_word
+= form_with model: [:users, @personal_word], method: :post,
   local: true  do |form|
   = form.text_field :content
   = form.submit

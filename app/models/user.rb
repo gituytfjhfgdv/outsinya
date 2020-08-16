@@ -10,6 +10,7 @@
 #  updated_at :datetime         not null
 #
 class User < ApplicationRecord
-  has_many :negative_words, dependent: :destroy
-  has_many :positive_words, dependent: :destroy
+  has_many :personal_words, dependent: :destroy
+  has_many :positive_words
+  has_many :negative_words
 end

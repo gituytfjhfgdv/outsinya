@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   namespace :users do
     root to: 'homes#index'
     resources :positive_words, :negative_words
+    resources :personal_words, only: :index
   end
 end
