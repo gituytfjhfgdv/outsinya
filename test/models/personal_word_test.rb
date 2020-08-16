@@ -4,12 +4,14 @@
 #
 #  id         :uuid             not null, primary key
 #  content    :string           not null
+#  type       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :uuid
 #
 # Indexes
 #
+#  index_personal_words_on_type     (type)
 #  index_personal_words_on_user_id  (user_id)
 #
 # Foreign Keys

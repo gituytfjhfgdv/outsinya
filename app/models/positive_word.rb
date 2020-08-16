@@ -18,7 +18,5 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class PersonalWord < ApplicationRecord
-  belongs_to :user
-  validates :content, uniqueness: { scope: :user_id }
+class PositiveWord < PersonalWord
 end
