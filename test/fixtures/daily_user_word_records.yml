@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  personal_word: one
+  count: 1
+  created_on: 2020-08-16 06:50:01
+
+two:
+  user: two
+  personal_word: two
+  count: 1
+  created_on: 2020-08-16 06:50:01
