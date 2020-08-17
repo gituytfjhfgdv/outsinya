@@ -9,25 +9,12 @@ namespace :get_twitter_activities do
     User.find_each do |user|
       twitter_text_array = tw.search_yesterday_data_about(user.nickname)
 
-      # 全体での数字を入れるならこれでもいいかも
-      #user_negative_words = user.negative_words.pluck(:content)
-      #negative_count = twitter_text_array.join(' ').scan(Regexp.union(user_negative_words)).length
-      #user_positive_words = user.positive_words.pluck(:content)
-      #positive_count = twitter_text_array.join(' ').scan(Regexp.union(user_positive_words)).length
-
       # 単語ごとにカウントしてデータ作る場合 ほげ->5回など
-      user.negative_words.each do |word|
+      user.personal_words.each do |word|
         regexp = Regexp.union(word)
         written_count = twitter_text_array.join(' ').scan(regexp).to_a.length
-        DailyUserWordWrittenCount.create(user: user, word: word,
-                                         count: written_count)
-      end
-
-      user.positive_words.each do |word|
-        regexp = Regexp.union(word)
-        written_count = twitter_text_array.join(' ').scan(regexp).to_a.length
-        DailyUserWordWrittenCount.create(user: user, word: word,
-                                         count: written_count)
+        DailyUserWordRecord.create(user: user, personal_word: word,
+                                   count: written_count, created_on: Time.current)
       end
     end
   end
