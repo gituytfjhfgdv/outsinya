@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_16_025651) do
+ActiveRecord::Schema.define(version: 2020_08_16_065000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "daily_user_word_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "personal_word_id", null: false
+    t.integer "count", null: false
+    t.datetime "created_on"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["personal_word_id"], name: "index_daily_user_word_records_on_personal_word_id"
+    t.index ["user_id"], name: "index_daily_user_word_records_on_user_id"
+  end
 
   create_table "personal_words", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "content", null: false
@@ -34,5 +45,7 @@ ActiveRecord::Schema.define(version: 2020_08_16_025651) do
     t.string "uid", null: false
   end
 
+  add_foreign_key "daily_user_word_records", "personal_words"
+  add_foreign_key "daily_user_word_records", "users"
   add_foreign_key "personal_words", "users"
 end
