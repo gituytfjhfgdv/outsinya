@@ -12,7 +12,6 @@ namespace :twitter_activities_daily_record do
       user.personal_words.each do |word|
         regexp = Regexp.union(word.content)
         written_count = twitter_text_array.join(' ').scan(regexp).to_a.length
-        next unless written_count.positive?
 
         DailyUserWordRecord.create(user: user, personal_word: word,
                                    count: written_count, created_on: Time.current)
