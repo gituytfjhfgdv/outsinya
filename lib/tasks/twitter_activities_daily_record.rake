@@ -14,7 +14,8 @@ namespace :twitter_activities_daily_record do
         written_count = twitter_text_array.join(' ').scan(regexp).to_a.length
 
         DailyUserWordRecord.create(user: user, personal_word: word,
-                                   count: written_count, created_on: Time.current)
+                                   count: written_count, created_on: Time.current,
+                                   all_daily_word_count: twitter_text_array.length)
       end
     end
   end

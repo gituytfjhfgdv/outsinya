@@ -2,13 +2,14 @@
 #
 # Table name: daily_user_word_records
 #
-#  id               :uuid             not null, primary key
-#  count            :integer          not null
-#  created_on       :datetime
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  personal_word_id :uuid             not null
-#  user_id          :uuid             not null
+#  id                   :uuid             not null, primary key
+#  all_daily_word_count :integer
+#  count                :integer          not null
+#  created_on           :datetime
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  personal_word_id     :uuid             not null
+#  user_id              :uuid             not null
 #
 # Indexes
 #
