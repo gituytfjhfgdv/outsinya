@@ -2,13 +2,13 @@ class Users::PersonalWordsController < UsersController
   before_action :set_word_type
 
   def new
-    model_name = @word_type.split("_").map{|w| w[0] = w[0].upcase; w}.join
+    model_name = @word_type.split('_').map{|w| w[0] = w[0].upcase; w}.join
     personal_word = model_name.constantize
     @personal_word = personal_word.new
   end
 
   def create
-    model_name = @word_type.split("_").map{|w| w[0] = w[0].upcase; w}.join
+    model_name = params[:personal_word_type].split('_').map{|w| w[0] = w[0].upcase; w}.join
     personal_word = model_name.constantize
     @personal_word = personal_word.new(personal_word_params)
     @personal_word.user = @current_user
@@ -34,7 +34,7 @@ class Users::PersonalWordsController < UsersController
   private
 
   def personal_word_params
-    params.require(@word_type).permit(:content)
+    params.require(@word_type).permit(:content, :personal_word_type)
   end
 
   def set_word_type

@@ -4,11 +4,22 @@ positive list
 %br
 - @words&.where(type: 'PositiveWord')&.each do |word|
   = word.content
+  = link_to '削除', users_personal_word_path(id: word.id), method: :delete
   %br
-
 
 negative list
 %br
 - @words&.where(type: 'NegativeWord')&.each do |word|
   = word.content
+  = link_to '削除', users_personal_word_path(id: word.id), method: :delete
   %br
+
+= render 'layouts/error_message', model: @personal_word
+= form_with model: [:users, @personal_word], method: :post,
+  local: true  do |form|
+  = form.radio_button :personal_word_type, :positive_word
+  = form.label :personal_word_type_positive_word, '嬉しい言葉'
+  = form.radio_button :personal_word_type, :negative_word
+  = form.label :personal_word_type_negative_word, '苦手な言葉'
+  = form.text_field :content
+  = form.submit
