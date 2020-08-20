@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     root to: 'homes#index'
     resources :positive_words, :negative_words
     resources :personal_words, only: :index
+    resources :daily_user_word_records, only: :index
   end
 end

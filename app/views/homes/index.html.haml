@@ -1,1 +1,18 @@
 = "#{current_user.nickname}さん、hello!" if current_user
+
+-# 昨日のデータ表示
+昨日の投稿された件数は全部で#{@yesterday_word_records.all_daily_word_count}件でした
+- @yesterday_word_records.each do |yesterday_record|
+  = yesterday_record.word
+  = "#{yesterday_record.count}回"
+
+= link_to '過去のデータ一覧へ', users_daily_user_word_records_path
+- @positive_words.first(5).each do |word|
+  = word.content
+  %br
+
+- @negative_words.first(5).each do |word|
+  = word.content
+  %br
+
+= link_to '登録した言葉一覧へ', users_personal_words_path
