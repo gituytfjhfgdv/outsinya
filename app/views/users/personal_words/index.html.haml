@@ -14,9 +14,8 @@ negative list
   = link_to '削除', users_personal_word_path(id: word.id), method: :delete
   %br
 
-= render 'layouts/error_message', model: @personal_word
-= form_with model: [:users, @personal_word], method: :post,
-  local: true  do |form|
+-#= render 'layouts/error_message', model: @personal_word if @personal_word
+-#= form_with model: [:users, @personal_word], method: :post, local: true  do |form|
   = form.radio_button :personal_word_type, :positive_word
   = form.label :personal_word_type_positive_word, '嬉しい言葉'
   = form.radio_button :personal_word_type, :negative_word

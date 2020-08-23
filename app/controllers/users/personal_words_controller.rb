@@ -5,6 +5,9 @@ class Users::PersonalWordsController < UsersController
     model_name = @word_type.split('_').map{|w| w[0] = w[0].upcase; w}.join
     personal_word = model_name.constantize
     @personal_word = personal_word.new
+    p '---------'
+    p @personal_word
+    p '----------'
   end
 
   def create
@@ -23,6 +26,12 @@ class Users::PersonalWordsController < UsersController
     p @word_type
     p current_user.send("#{@word_type}s".to_sym)
     @words = current_user.send("#{@word_type}s".to_sym)
+    model_name = @word_type.split('_').map{|w| w[0] = w[0].upcase; w}.join
+    personal_word = model_name.constantize
+    @personal_word = personal_word
+    p '---------------'
+    p @personal_word
+    p '============'
   end
 
   def destroy

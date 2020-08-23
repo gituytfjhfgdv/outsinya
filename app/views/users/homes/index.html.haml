@@ -1,9 +1,18 @@
-マイページ
-= @current_user.nickname
+= "#{current_user.nickname}さん、hello!" if current_user
+
+-# 昨日のデータ表示
+昨日の投稿された件数は全部で#{@yesterday_word_records.first&.all_daily_word_count&.to_i}件でした
+- @yesterday_word_records&.each do |yesterday_record|
+  = yesterday_record.word
+  = "#{yesterday_record.count}回"
+
+= '登録されてません' unless @positive_words
+- @positive_words&.each do |word|
+  = word.content
+  %br
+
+- @negative_words&.each do |word|
+  = word.content
+  %br
 
 = link_to '登録した言葉一覧へ', users_personal_words_path
-
-= link_to '嬉しい言葉一覧', users_positive_words_path
-%br
-= link_to '嫌な言葉一覧', users_negative_words_path
-
