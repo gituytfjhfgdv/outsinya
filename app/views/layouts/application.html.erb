@@ -8,9 +8,9 @@
     <%= stylesheet_link_tag "application", media: "all" %>
   </head>
 
-  <body>
+  <body style="padding:0; margin:0; min-height: 100vh">
     <%= render 'layouts/header' %>
-    <div class="container">
+    <div class="main">
       <%= render 'flash' %>
       <%= yield %>
       <%= render 'layouts/footer' %>

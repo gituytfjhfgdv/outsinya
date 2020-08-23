@@ -14,4 +14,7 @@
  *= require_self
  */
 @import 'bulma/css/bulma.css';
-/*@import 'bulma';*/
+
+.is-brand_primary_color {
+  background-color: #59afff;
+}
