@@ -1,1 +1,43 @@
-ホーム。ログインしててもしなくても表示される情報は同じ。
+%div{style: "display: flex;justify-content: center;width: 100vw;height: 75vh; align-items:center;"}
+  %span.is-size-1.is-hidden-tablet
+    outsinya
+  %span.is-hidden-mobile{style: 'font-size: 5rem;'}
+    outsinya
+
+%div{style: 'font-size:12px; margin:10px 30px; text-align:center;'}
+  言葉を登録することでSNSでの人との繋がりを考えるきっかけを作るお手伝いをする。
+  %br
+  アウトサイニャーはそのために生まれたサービスです。
+
+-# 使い方
+.mb-5{style: 'margin-left: 10vw;margin-right: 10vw; margin-bottom:15px;'}
+  %div{style: 'margin-top: 30vh;'}
+    %div
+      .my-6.has-text-weight-bold{style: 'font-size: 1.5em;'}
+        アウトサイニャーのはじめ方
+  .tile.is-ancestor
+    .tile.is-parent
+      %article.tile.is-child.box
+        %p.subtitle.is-size-6 1. お持ちのTwitterアカウントを通じて会員登録しましょう
+        .content.has-text-centered
+          = image_tag 'step_1.png'
+    .tile.is-parent
+      %article.tile.is-child.box
+        %p.subtitle.is-size-6 2. 「嬉しい言葉」と「苦手な言葉」をアウトサイニャーに教えてください。
+        .content.has-text-centered.pt-4
+          = image_tag 'step_2.png'
+    .tile.is-parent
+      %article.tile.is-child.box
+        %p.subtitle.is-size-6 3. アウトサイニャーが毎日のあなたへのSNS上の言葉を可視化します
+        .content.has-text-centered.pt-4
+          = image_tag 'step_3.png'
+
+= link_to '/auth/twitter', class: 'button is-medium has-text-white has-text-weight-bold has-text-centered mb-1',
+  style: 'background: #1DA1F2; margin: 0 auto; display: flex; width: 300px; padding:15px;' do
+  - url = asset_path('twitter.png')
+  %span{style: "background: url(#{url}) no-repeat; background-size: 40px 40px; width: 40px; height:40px; margin-left: -10px;"}
+  Twitterアカウントで登録
+= link_to '/auth/twitter', class: 'has-text-grey-dark button is-text has-text-centered is-small',
+  style: 'margin: 0 auto; display: flex; width: 200px' do
+  %p
+    既に登録済みの方はこちらからログイン
