@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_args (2.5.0)
     actioncable (6.0.3.2)
       actionpack (= 6.0.3.2)
       nio4r (~> 2.0)
@@ -283,6 +284,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  action_args
   annotate
   better_errors
   binding_of_caller
