@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   namespace :users do
     root to: 'homes#index'
     resources :positive_words, :negative_words
-    resources :personal_words, only: %i[index destroy]
+    resources :personal_words, only: %i[index destroy create]
     resources :daily_user_word_records, only: :index
   end
 end

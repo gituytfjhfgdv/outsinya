@@ -1,52 +1,24 @@
 class Users::PersonalWordsController < UsersController
-  before_action :set_word_type
+  permits :content, :type
 
-  def new
-    model_name = @word_type.split('_').map{|w| w[0] = w[0].upcase; w}.join
-    personal_word = model_name.constantize
-    @personal_word = personal_word.new
-    p '---------'
-    p @personal_word
-    p '----------'
-  end
-
-  def create
-    model_name = params[:personal_word_type].split('_').map{|w| w[0] = w[0].upcase; w}.join
-    personal_word = model_name.constantize
-    @personal_word = personal_word.new(personal_word_params)
-    @personal_word.user = @current_user
+  def create(personal_word)
+    word_class = personal_word['type'].camelize.constantize
+    @personal_word = word_class.new(content: personal_word['content'], user_id: current_user.id)
     if @personal_word.save
       redirect_to users_personal_words_path
     else
-      render :new
+      render :index
     end
   end
 
   def index
-    p @word_type
-    p current_user.send("#{@word_type}s".to_sym)
-    @words = current_user.send("#{@word_type}s".to_sym)
-    model_name = @word_type.split('_').map{|w| w[0] = w[0].upcase; w}.join
-    personal_word = model_name.constantize
-    @personal_word = personal_word
-    p '---------------'
-    p @personal_word
-    p '============'
+    @words = current_user.personal_words
+    @personal_word = PersonalWord.new
   end
 
-  def destroy
-    personal_word = PersonalWord.find_by(id: params[:id])
+  def destroy(id)
+    personal_word = PersonalWord.find_by(id: id)
     personal_word.destroy!
     redirect_to users_personal_words_path
-  end
-
-  private
-
-  def personal_word_params
-    params.require(@word_type).permit(:content, :personal_word_type)
-  end
-
-  def set_word_type
-    @word_type = 'personal_word'
   end
 end
