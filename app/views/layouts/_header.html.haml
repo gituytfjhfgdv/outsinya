@@ -8,13 +8,13 @@
         - if @current_user.present?
           .buttons
             = link_to 'ログアウト', logout_path, class: 'button is-light has-text-weight-bold'
-            = link_to '単語の追加', '', class: 'button is-brand_primary_color has-text-white has-text-weight-bold'
+            = link_to '単語の追加', users_personal_words_path, class: 'button is-brand_primary_color has-text-white has-text-weight-bold',style: 'border: none;'
         - else
           .buttons
             = link_to 'ログイン', '/auth/twitter', class: 'button is-light has-text-weight-bold'
-            = link_to '新規登録', '/auth/twitter', class: 'button is-brand_primary_color has-text-white has-text-weight-bold'
+            = link_to '新規登録', '/auth/twitter', class: 'button is-brand_primary_color has-text-white has-text-weight-bold', style: 'border:none;'
   .is-hidden-tablet.mr-3
     - if @current_user.present?
-      = link_to 'マイページへ', users_root_path, class: 'button is-brand_primary_color has-text-white has-text-weight-bold is-small'
+      = link_to '単語の追加', users_personal_words_path, class: 'button is-brand_primary_color has-text-white has-text-weight-bold is-small'
     - else
       = link_to '新規登録', '/auth/twitter', class: 'button is-brand_primary_color has-text-white has-text-weight-bold is-small'

@@ -30,3 +30,10 @@
   padding: 10px;
   margin-bottom: 10px;
 }
+.slide_anim {
+  animation: 3s linear 1s slidein;
+}
+@keyframes slidein {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}

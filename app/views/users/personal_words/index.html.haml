@@ -34,3 +34,7 @@
         = form.hidden_field :type, value: 'negative_word'
         = form.text_field :content, class: 'input is-size-7', placeholder: '気楽にいくにゃ！', style: 'height: 30px; margin-left: 5px;margin-right: 11px;  border: none; width: 70vw;'
         = form.submit '+', style: 'border-radius: 25px;    background: #fff;    border: 1px solid #59afff;color: #59afff;    height: 23px; position: absolute; right: 20px; cursor: pointer;', data: { disable_with: '...' }
+  .has-text-centered.mt-6
+    = link_to users_root_path do
+      %button.button.is-size-7
+        ユーザホームへ

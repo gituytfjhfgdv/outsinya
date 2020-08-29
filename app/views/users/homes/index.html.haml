@@ -1,18 +1,45 @@
-= "#{current_user.nickname}さん、hello!" if current_user
+%div{style: 'margin: auto 20px;'}
+  .is-size-5.mb-4
+    = "#{current_user.nickname}さん、こんにちは!"
 
--# 昨日のデータ表示
-昨日の投稿された件数は全部で#{@yesterday_word_records.first&.all_daily_word_count&.to_i}件でした
-- @yesterday_word_records&.each do |yesterday_record|
-  = yesterday_record.word
-  = "#{yesterday_record.count}回"
+  -# 昨日のデータ表示
+  - daily_post_count = @yesterday_word_records.first&.all_daily_word_count&.to_i || 0
+  .mb-4
+    .is-size-6.has-text-weight-bold.mb-3
+      昨日投稿された件数(#{daily_post_count}件)
+    - if daily_post_count.positive?
+      - Range.new(1, daily_post_count).each do
+        %span
+          = icon('fas', 'cat', style: 'color: #ad8aec', class: 'strong fa-2x slide_anim')
+  .mb-4
+    .is-size-6.has-text-weight-bold
+      投稿内容の分析結果
+    %ul{style: 'list-style: none;'}
+      - @yesterday_word_records&.each do |yesterday_record|
+        %li.pt-2.pb-2{style: 'list-style: none; display: flex;justify-content: space-between; border-bottom: 1px solid #e6e6e6;'}
+          %span
+            = yesterday_record.personal_word.content
+          %span{style: 'display: flex; flex-wrap: wrap;'}
+            - Range.new(1, yesterday_record.count).each do
+              - if yesterday_record.personal_word.type == 'PostiveWord'
+                %span
+                  = icon('fas', 'cat', style: 'color: #58b0ff', class: 'strong slide_anim')
+              - else
+                %span
+                  = icon('fas', 'cat', style: 'color: #f96e78', class: 'strong slide_anim')
 
-= '登録されてません' unless @positive_words
-- @positive_words&.each do |word|
-  = word.content
-  %br
-
-- @negative_words&.each do |word|
-  = word.content
-  %br
-
-= link_to '登録した言葉一覧へ', users_personal_words_path
+  %ul.mb-4{style: 'list-style:none;'}
+    %li
+      %span
+        = icon('fas', 'cat', style: 'color: #58b0ff', class: 'strong')
+      %span.is-size-7
+        嬉しい言葉が登場した回数
+    %li
+      %span
+        = icon('fas', 'cat', style: 'color: #f96e78', class: 'strong')
+      %span.is-size-7
+        苦手な言葉が登場した回数
+.has-text-centered.mb-3
+  = link_to users_personal_words_path do
+    %button.button.is-size-7
+      登録済みの言葉一覧
