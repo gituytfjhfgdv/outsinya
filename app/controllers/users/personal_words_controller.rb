@@ -2,6 +2,9 @@ class Users::PersonalWordsController < UsersController
   permits :content, :type
 
   def create(personal_word)
+    p 'create!'
+    p personal_word
+    @words = current_user.personal_words
     word_class = personal_word['type'].camelize.constantize
     @personal_word = word_class.new(content: personal_word['content'], user_id: current_user.id)
     if @personal_word.save

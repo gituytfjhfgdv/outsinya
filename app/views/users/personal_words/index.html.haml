@@ -1,24 +1,36 @@
-personal_words
-
-positive list
-%br
-- @words&.where(type: 'PositiveWord')&.each do |word|
-  = word.content
-  = button_to '削除', "/users/personal_words/#{word.id}", method: :delete
-  %br
-
-negative list
-%br
-- @words&.where(type: 'NegativeWord')&.each do |word|
-  = word.content
-  = button_to '削除', "/users/personal_words/#{word.id}", method: :delete
-  %br
-
--#= render 'layouts/error_message', model: @personal_word if @personal_word
-= form_with model: [:users, @personal_word], method: :post, local: true  do |form|
-  = form.radio_button :type, :positive_word, checked: true
-  = form.label :type_positive_word, '嬉しい言葉'
-  = form.radio_button :type, :negative_word
-  = form.label :type_negative_word, '苦手な言葉'
-  = form.text_field :content
-  = form.submit
+.mb-6{style: 'margin: auto 20px;'}
+  = render 'layouts/error_message', model: @personal_word if @personal_word
+  .is-size-5.has-text-weight-bold
+    登録中の嬉しい言葉
+  %ul
+  - @words&.where(type: 'PositiveWord')&.each do |word|
+    %li.pt-2.pb-2.word_li{style: 'list-style: none; display: flex;justify-content: space-between; border-bottom: 1px solid #e6e6e6;'}
+      %span
+        = icon('fas', 'cat', style: 'color: #58b0ff', class: 'strong')
+        %span{style: 'padding-left: 10px;'}
+          = word.content
+      = button_to '-', "/users/personal_words/#{word.id}", method: :delete, style: 'border-radius: 25px; border:none; background: #fff; border: 1px solid #59afff; color: #59afff; cursor: pointer;'
+  .pt-2.pb-2.word_li{style: 'list-style: none; display: flex;justify-content: space-between; border-bottom: 1px solid #e6e6e6;'}
+    %div{style: '    display: flex;    justify-content: space-between;'}
+      %span= icon('fas', 'cat', style: 'color: #58b0ff', class: 'strong')
+      = form_with model: [:users, @personal_word], method: :post, local: true  do |form|
+        = form.hidden_field :type, value: 'positive_word'
+        = form.text_field :content, class: 'input is-size-7', placeholder: 'スマイルだにゃ！', style: 'height: 30px; margin-left: 5px;margin-right: 11px; border: none;     width: 70vw;'
+        = form.submit '+', style: 'border-radius: 25px;    background: #fff;    border: 1px solid #59afff;color: #59afff;    height: 23px; position: absolute; right: 20px;cursor: pointer;',data: { disable_with: '...' }
+  .is-size-5.has-text-weight-bold.mt-5
+    登録中の苦手な言葉
+  %ul
+  - @words&.where(type: 'NegativeWord')&.each do |word|
+    %li.pt-2.pb-2.word_li{style: 'list-style: none; display: flex;justify-content: space-between; border-bottom: 1px solid #e6e6e6;'}
+      %span
+        = icon('fas', 'cat', style: 'color: #f96e78', class: 'strong')
+        %span{style: 'padding-left: 10px;'}
+          = word.content
+      = button_to '-', "/users/personal_words/#{word.id}", method: :delete, style: 'border-radius: 25px; border:none; background: #fff; border: 1px solid #59afff; color: #59afff; cursor: pointer;'
+  .pt-2.pb-2.word_li{style: 'list-style: none; display: flex;justify-content: space-between; border-bottom: 1px solid #e6e6e6;'}
+    %div{style: '    display: flex;    justify-content: space-between;'}
+      %span= icon('fas', 'cat', style: 'color: #f96e78', class: 'strong')
+      = form_with model: [:users, @personal_word], method: :post, local: true  do |form|
+        = form.hidden_field :type, value: 'negative_word'
+        = form.text_field :content, class: 'input is-size-7', placeholder: '気楽にいくにゃ！', style: 'height: 30px; margin-left: 5px;margin-right: 11px;  border: none; width: 70vw;'
+        = form.submit '+', style: 'border-radius: 25px;    background: #fff;    border: 1px solid #59afff;color: #59afff;    height: 23px; position: absolute; right: 20px; cursor: pointer;', data: { disable_with: '...' }

@@ -15,6 +15,18 @@
  */
 @import 'bulma/css/bulma.css';
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
 .is-brand_primary_color {
   background-color: #59afff;
+}
+.field_with_errors {
+  display: inline-block;
+}
+.alert {
+  background-color: #feecf0;
+  color: #cc0f35;
+  padding: 10px;
+  margin-bottom: 10px;
 }

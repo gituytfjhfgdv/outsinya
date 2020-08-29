@@ -1,4 +1,4 @@
 - if flash.any?
   .flash
     - flash.each do |type, message|
-      = content_tag(:div, message, class: type)
+      = content_tag(:div, message, class: "#{type} m-2 mb-5")
