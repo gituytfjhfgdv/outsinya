@@ -1,20 +1,22 @@
+- is_static_page = %w[/privacy /terms].include?(request.path)
 %nav.navbar.is-fixed-top{"aria-label" => "main navigation", :role => "navigation", style: 'border-bottom: #eded 1px solid; justify-content: space-between; display: flex;align-items: center;'}
   .navbar-brand
     = link_to root_path, class: 'navbar-item' do
       = image_tag 'outsinya_site_logo.png', width: "80", height: "80", style:'max-height: initial'
-  #navbarBasicExample.navbar-menu
-    .navbar-end
-      .navbar-item
-        - if @current_user.present?
-          .buttons
-            = link_to 'ログアウト', logout_path, class: 'button is-light has-text-weight-bold'
-            = link_to '単語の追加', users_personal_words_path, class: 'button is-brand_primary_color has-text-white has-text-weight-bold',style: 'border: none;'
-        - else
-          .buttons
-            = link_to 'ログイン', '/auth/twitter', class: 'button is-light has-text-weight-bold'
-            = link_to '新規登録', '/auth/twitter', class: 'button is-brand_primary_color has-text-white has-text-weight-bold', style: 'border:none;'
-  .is-hidden-tablet.mr-3
-    - if @current_user.present?
-      = link_to '単語の追加', users_personal_words_path, class: 'button is-brand_primary_color has-text-white has-text-weight-bold is-small'
-    - else
-      = link_to '新規登録', '/auth/twitter', class: 'button is-brand_primary_color has-text-white has-text-weight-bold is-small'
+  - unless is_static_page
+    #navbarBasicExample.navbar-menu
+      .navbar-end
+        .navbar-item
+          - if @current_user.present?
+            .buttons
+              = link_to 'ログアウト', logout_path, class: 'button is-light has-text-weight-bold'
+              = link_to '単語の追加', users_personal_words_path, class: 'button is-brand_primary_color has-text-white has-text-weight-bold',style: 'border: none;'
+          - else
+            .buttons
+              = link_to 'ログイン', '/auth/twitter', class: 'button is-light has-text-weight-bold'
+              = link_to '新規登録', '/auth/twitter', class: 'button is-brand_primary_color has-text-white has-text-weight-bold', style: 'border:none;'
+    .is-hidden-tablet.mr-3
+      - if @current_user.present?
+        = link_to '単語の追加', users_personal_words_path, class: 'button is-brand_primary_color has-text-white has-text-weight-bold is-small', style: 'border:none;'
+      - else
+        = link_to '新規登録', '/auth/twitter', class: 'button is-brand_primary_color has-text-white has-text-weight-bold is-small', style: 'border:none;'
