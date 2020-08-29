@@ -6,4 +6,8 @@
       |
     %span
       = link_to 'プライバシーポリシー', page_path('privacy'), class: 'has-text-white'
+    - if current_user
+      %span
+        |
+      = link_to 'アカウント情報の削除(退会)', user_path(current_user.id), method: :delete, class: 'has-text-white', data: { confirm: '本当にアカウントを削除して大丈夫ですか？' }
   © 2020 outsinya All rights reserved

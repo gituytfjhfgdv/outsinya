@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'homes#index'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
-
+  resources :users, only: %i[destroy]
   namespace :users do
     root to: 'homes#index'
     resources :personal_words, only: %i[index destroy create]
