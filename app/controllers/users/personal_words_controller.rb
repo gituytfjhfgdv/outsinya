@@ -20,6 +20,8 @@ class Users::PersonalWordsController < UsersController
   end
 
   def destroy(id)
+    return unless current_user.personal_words.pluck(:id).include?(id)
+
     personal_word = PersonalWord.find_by(id: id)
     personal_word.destroy!
     redirect_to users_personal_words_path
