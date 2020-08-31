@@ -21,7 +21,7 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: app_user_role
-  password: xmanbBhfdubyfbVcstvx61g8bb
+  password: <%= ENV["DB_PASSWORD"] %>
   host: db
 
 development:
@@ -82,7 +82,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: outsinya_production
-  username: outsinya
-  password: <%= ENV['OUTSINYA_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
