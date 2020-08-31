@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_141451) do
+ActiveRecord::Schema.define(version: 2020_08_31_122549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "daily_last_tweet_id_for_users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "tweet_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.uuid "user_id", null: false
+    t.index ["user_id"], name: "index_daily_last_tweet_id_for_users_on_user_id"
+  end
 
   create_table "daily_user_word_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
@@ -46,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_08_19_141451) do
     t.string "uid", null: false
   end
 
+  add_foreign_key "daily_last_tweet_id_for_users", "users"
   add_foreign_key "daily_user_word_records", "personal_words"
   add_foreign_key "daily_user_word_records", "users"
   add_foreign_key "personal_words", "users"
