@@ -4,17 +4,17 @@ class TwitterApiClient
   end
 
   def user_timeline(user_name)
-    @client.user_timeline(user_name).each do |timeline|
-      p @client.status(timeline.id).text
-    end
+    #@client.user_timeline(user_name).each do |timeline|
+      #p @client.status(timeline.id).text
+    #end
   end
 
   def search_yesterday_data_about(user_name)
-    p 'search_yesterday_data_about'
-    @client.search("@#{user_name}", result_type: 'recent',
-                   since: Time.current.yesterday.strftime('%F'),
-                   until: Time.current.strftime('%F')).take(3).collect do |tweet|
-      p "#{tweet.user.screen_name}: #{tweet.text}"
+    res = @client.search("@#{user_name}",
+                         { result_type: 'mixed', until: Time.current.strftime('%F'),
+                           since_id: DailyLastTweetIdForUser.last&.tweet_id || 0 })
+    res.collect do |tweet|
+      { text: tweet.text, tweet_id: tweet.id }
     end
   end
 
