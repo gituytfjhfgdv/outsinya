@@ -14,19 +14,22 @@
   .mb-4
     .is-size-6.has-text-weight-bold
       投稿内容の分析結果
-    %ul{style: 'list-style: none;'}
-      - @yesterday_word_records&.each do |yesterday_record|
-        %li.pt-2.pb-2{style: 'list-style: none; display: flex;justify-content: space-between; border-bottom: 1px solid #e6e6e6;'}
-          %span
-            = yesterday_record.personal_word.content
-          %span{style: 'display: flex; flex-wrap: wrap;'}
-            - Range.new(1, yesterday_record.count).each do
-              - if yesterday_record.personal_word.type == 'PostiveWord'
-                %span
-                  = icon('fas', 'cat', style: 'color: #58b0ff', class: 'strong slide_anim')
-              - else
-                %span
-                  = icon('fas', 'cat', style: 'color: #f96e78', class: 'strong slide_anim')
+    - if daily_post_count.positive?
+      %ul{style: 'list-style: none;'}
+        - @yesterday_word_records&.each do |yesterday_record|
+          %li.pt-2.pb-2{style: 'list-style: none; display: flex;justify-content: space-between; border-bottom: 1px solid #e6e6e6;'}
+            %span
+              = yesterday_record.personal_word.content
+            %span{style: 'display: flex; flex-wrap: wrap;'}
+              - Range.new(1, yesterday_record.count).each do
+                - if yesterday_record.personal_word.type == 'PostiveWord'
+                  %span
+                    = icon('fas', 'cat', style: 'color: #58b0ff', class: 'strong slide_anim')
+                - else
+                  %span
+                    = icon('fas', 'cat', style: 'color: #f96e78', class: 'strong slide_anim')
+    - else
+      %p.is-size-7.mt-4 投稿が見つかりませんでした。
 
   %ul.mb-4{style: 'list-style:none;'}
     %li
