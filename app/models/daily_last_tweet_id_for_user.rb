@@ -1,0 +1,2 @@
+class DailyLastTweetIdForUser < ApplicationRecord
+end
