@@ -3,6 +3,8 @@ namespace :twitter_activities_daily_record do
   task count_specific_words: :environment do
     # 1. twitter apiをよんで前日分に発行されたユーザのデータを取得
     # 2. そのデータの中から特定の単語が何度入ってるかを数えてdbに入れる
+    #
+    return unless Rails.env.production?
 
     tw = TwitterApiClient.new
 
