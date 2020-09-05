@@ -42,3 +42,6 @@ yarn-debug.log*
 # Ignore gem files
 /vendor/bundle
 /vendor/cache
+
+# Ignore sitemap file
+public/sitemap.xml.gz
