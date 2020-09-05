@@ -18,3 +18,9 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+return unless Rails.env.production?
+
+# 午前0時に前日のメンションされた情報を取得してレコード作成
+every 1.day, at: '00:00 am' do
+  rake 'twitter_activities_daily_record:count_specific_words'
+end
