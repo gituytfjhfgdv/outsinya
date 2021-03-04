@@ -47,7 +47,7 @@ end
 
 group :development do
   gem 'annotate'
-  gem 'bullet'
+  #gem 'bullet'
   gem 'better_errors'
   gem 'binding_of_caller'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
